@@ -202,7 +202,7 @@ uint32_t m_ui_flash_init(const ble_uis_led_t * p_default_config,
         fds_record_t        record;
         fds_record_chunk_t  record_chunk;
 
-        NRF_LOG_INFO("Writing default config\r\n");
+        NRF_LOG_INFO(" [ui] Writing default config\r\n");
 
         memcpy(&m_config.data.config, p_default_config, sizeof(ble_uis_led_t));
         m_config.data.valid = WS_FLASH_CONFIG_VALID;
