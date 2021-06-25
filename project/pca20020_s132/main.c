@@ -74,6 +74,10 @@
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 
+
+#include "drv_pwm.h"
+
+
 #define DEAD_BEEF   0xDEADBEEF          /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 #define SCHED_MAX_EVENT_DATA_SIZE   MAX(APP_TIMER_SCHED_EVENT_DATA_SIZE, BLE_STACK_HANDLER_SCHED_EVT_SIZE) /**< Maximum size of scheduler events. */
 #define SCHED_QUEUE_SIZE            60  /**< Maximum number of events in the scheduler queue. */
@@ -345,6 +349,8 @@ static void board_init(void)
 }
 
 
+uint8_t pwm_duty = 30;
+
 /**@brief Application main function.
  */
 int main(void)
@@ -362,9 +368,12 @@ int main(void)
 
     board_init();
     thingy_init();
+    
+    drv_pwm_init();
 
     for (;;)
     {
+        drv_pwm_out(pwm_duty);
         app_sched_execute();
         
         if (!NRF_LOG_PROCESS()) // Process logs
