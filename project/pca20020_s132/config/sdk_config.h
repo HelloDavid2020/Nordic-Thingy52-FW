@@ -2842,14 +2842,14 @@
  
 
 #ifndef PWM1_ENABLED
-#define PWM1_ENABLED 0
+#define PWM1_ENABLED 1
 #endif
 
 // <q> PWM2_ENABLED  - Enable PWM2 instance
  
 
 #ifndef PWM2_ENABLED
-#define PWM2_ENABLED 0
+#define PWM2_ENABLED 1
 #endif
 
 // <e> PWM_CONFIG_LOG_ENABLED - Enables logging in the module.
