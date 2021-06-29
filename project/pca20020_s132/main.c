@@ -370,7 +370,9 @@ int main(void)
     thingy_init();
     
     drv_pwm_init();
-
+    drv_pwm_lock();
+    
+    
     for (;;)
     {
         app_sched_execute();
