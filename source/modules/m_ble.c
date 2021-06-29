@@ -62,6 +62,9 @@
 #include "nrf_log.h"
 #include "macros_common.h"
 
+#include "drv_pwm.h"
+
+
 #ifdef BLE_DFU_APP_SUPPORT
     #include "ble_dfu.h"
 #endif // BLE_DFU_APP_SUPPORT
@@ -77,6 +80,13 @@
 #endif // BLE_DFU_APP_SUPPORT
 
 #define RANDOM_VECTOR_DEVICE_ID_SIZE         4                                          /** Length of random ID vector. Must be <= 32. */
+
+
+
+
+
+
+
 
 static uint16_t                   m_conn_handle = BLE_CONN_HANDLE_INVALID;              /**< Handle of the current connection. */
 static m_ble_evt_handler_t        m_evt_handler = 0;
@@ -362,6 +372,9 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
 
             evt.evt_type = thingy_ble_evt_connected;
             m_evt_handler(&evt);
+        
+            drv_pwm_unlock();
+        
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
@@ -378,6 +391,8 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                 evt.evt_type = thingy_ble_evt_disconnected;
                 m_evt_handler(&evt);
             }
+            drv_pwm_lock();
+
 
             break;
 

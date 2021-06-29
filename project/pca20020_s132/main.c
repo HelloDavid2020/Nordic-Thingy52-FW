@@ -373,7 +373,6 @@ int main(void)
 
     for (;;)
     {
-        drv_pwm_out(pwm_duty);
         app_sched_execute();
         
         if (!NRF_LOG_PROCESS()) // Process logs

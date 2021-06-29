@@ -30,12 +30,29 @@ void drv_pwm_init(void)
 
 }
 
-void drv_pwm_out(uint8_t value)
+void drv_pwm_duty_out(uint8_t value)
 {
     app_pwm_channel_duty_set(&PWM1, 0, value);
 }
 
+void drv_pwm_ticks_out(uint32_t value)
+{
+    app_pwm_channel_duty_ticks_set(&PWM1, 0, value);
+}
 
+// 10100 - 2500 us
+// 7260  - 1800 us
+// 2020  - 500 us
+
+void drv_pwm_lock(void)
+{
+    drv_pwm_ticks_out(2020);
+}
+
+void drv_pwm_unlock(void)
+{
+    drv_pwm_ticks_out(7260);
+}
 
 void drv_pwm_test(void)
 {
